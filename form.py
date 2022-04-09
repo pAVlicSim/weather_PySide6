@@ -11,27 +11,42 @@
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QMainWindow, QMenuBar, QSizePolicy, QStatusBar,
-    QTabWidget, QVBoxLayout, QWidget)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QGridLayout, QHBoxLayout,
+    QHeaderView, QLabel, QMainWindow, QMenu,
+    QMenuBar, QScrollArea, QSizePolicy, QStatusBar,
+    QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(725, 508)
-        MainWindow.setStyleSheet(u"font: italic 22pt \"Nimbus Roman [urw]\";")
+        MainWindow.resize(868, 622)
+        MainWindow.setStyleSheet(u"font: italic 16pt \"Nimbus Roman [urw]\";")
+        self.action_temp = QAction(MainWindow)
+        self.action_temp.setObjectName(u"action_temp")
+        self.action_temp.setCheckable(True)
+        self.action_press = QAction(MainWindow)
+        self.action_press.setObjectName(u"action_press")
+        self.action_press.setCheckable(True)
+        self.action_uvi = QAction(MainWindow)
+        self.action_uvi.setObjectName(u"action_uvi")
+        self.action_uvi.setCheckable(True)
+        self.action_wind = QAction(MainWindow)
+        self.action_wind.setObjectName(u"action_wind")
+        self.action_wind.setCheckable(True)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setStyleSheet(u"font: italic 22pt \"Nimbus Roman [urw]\";")
+        self.tabWidget.setStyleSheet(u"font: italic 16pt \"Nimbus Roman [urw]\";")
         self.tab_now = QWidget()
         self.tab_now.setObjectName(u"tab_now")
         self.horizontalLayout_2 = QHBoxLayout(self.tab_now)
@@ -40,6 +55,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label_title = QLabel(self.tab_now)
         self.label_title.setObjectName(u"label_title")
+        self.label_title.setMaximumSize(QSize(16777215, 50))
         self.label_title.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout.addWidget(self.label_title)
@@ -54,106 +70,54 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addLayout(self.verticalLayout)
 
         self.tabWidget.addTab(self.tab_now, "")
-        self.tab_2 = QWidget()
-        self.tab_2.setObjectName(u"tab_2")
-        self.horizontalLayout_3 = QHBoxLayout(self.tab_2)
+        self.tab_hourly = QWidget()
+        self.tab_hourly.setObjectName(u"tab_hourly")
+        self.horizontalLayout_3 = QHBoxLayout(self.tab_hourly)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_4 = QHBoxLayout()
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.scrollArea = QScrollArea(self.tab_hourly)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 824, 480))
+        self.horizontalLayout_4 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.gridLayout_2 = QGridLayout()
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.label_12 = QLabel(self.tab_2)
-        self.label_12.setObjectName(u"label_12")
+        self.tableWidget_hourly = QTableWidget(self.scrollAreaWidgetContents)
+        if (self.tableWidget_hourly.columnCount() < 10):
+            self.tableWidget_hourly.setColumnCount(10)
+        if (self.tableWidget_hourly.rowCount() < 48):
+            self.tableWidget_hourly.setRowCount(48)
+        self.tableWidget_hourly.setObjectName(u"tableWidget_hourly")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(1)
+        sizePolicy.setHeightForWidth(self.tableWidget_hourly.sizePolicy().hasHeightForWidth())
+        self.tableWidget_hourly.setSizePolicy(sizePolicy)
+        self.tableWidget_hourly.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.tableWidget_hourly.setTextElideMode(Qt.ElideNone)
+        self.tableWidget_hourly.setRowCount(48)
+        self.tableWidget_hourly.setColumnCount(10)
+        self.tableWidget_hourly.horizontalHeader().setCascadingSectionResizes(True)
+        self.tableWidget_hourly.horizontalHeader().setHighlightSections(False)
+        self.tableWidget_hourly.verticalHeader().setCascadingSectionResizes(True)
+        self.tableWidget_hourly.verticalHeader().setMinimumSectionSize(80)
+        self.tableWidget_hourly.verticalHeader().setDefaultSectionSize(80)
+        self.tableWidget_hourly.verticalHeader().setHighlightSections(False)
+        self.tableWidget_hourly.verticalHeader().setProperty("showSortIndicator", False)
+        self.tableWidget_hourly.verticalHeader().setStretchLastSection(False)
 
-        self.gridLayout_2.addWidget(self.label_12, 1, 0, 1, 1)
+        self.horizontalLayout_4.addWidget(self.tableWidget_hourly)
 
-        self.label_10 = QLabel(self.tab_2)
-        self.label_10.setObjectName(u"label_10")
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
-        self.gridLayout_2.addWidget(self.label_10, 3, 0, 1, 1)
-
-        self.label_9 = QLabel(self.tab_2)
-        self.label_9.setObjectName(u"label_9")
-
-        self.gridLayout_2.addWidget(self.label_9, 0, 0, 1, 1)
-
-        self.label_11 = QLabel(self.tab_2)
-        self.label_11.setObjectName(u"label_11")
-
-        self.gridLayout_2.addWidget(self.label_11, 2, 0, 1, 1)
-
-        self.label_13 = QLabel(self.tab_2)
-        self.label_13.setObjectName(u"label_13")
-
-        self.gridLayout_2.addWidget(self.label_13, 0, 1, 1, 1)
-
-        self.label_14 = QLabel(self.tab_2)
-        self.label_14.setObjectName(u"label_14")
-
-        self.gridLayout_2.addWidget(self.label_14, 1, 1, 1, 1)
-
-        self.label_15 = QLabel(self.tab_2)
-        self.label_15.setObjectName(u"label_15")
-
-        self.gridLayout_2.addWidget(self.label_15, 2, 1, 1, 1)
-
-        self.label_16 = QLabel(self.tab_2)
-        self.label_16.setObjectName(u"label_16")
-
-        self.gridLayout_2.addWidget(self.label_16, 3, 1, 1, 1)
+        self.verticalLayout_2.addWidget(self.scrollArea)
 
 
-        self.horizontalLayout_4.addLayout(self.gridLayout_2)
+        self.horizontalLayout_3.addLayout(self.verticalLayout_2)
 
-        self.gridLayout_3 = QGridLayout()
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.label_18 = QLabel(self.tab_2)
-        self.label_18.setObjectName(u"label_18")
-
-        self.gridLayout_3.addWidget(self.label_18, 0, 1, 1, 1)
-
-        self.label_17 = QLabel(self.tab_2)
-        self.label_17.setObjectName(u"label_17")
-
-        self.gridLayout_3.addWidget(self.label_17, 0, 0, 1, 1)
-
-        self.label_20 = QLabel(self.tab_2)
-        self.label_20.setObjectName(u"label_20")
-
-        self.gridLayout_3.addWidget(self.label_20, 2, 0, 1, 1)
-
-        self.label_19 = QLabel(self.tab_2)
-        self.label_19.setObjectName(u"label_19")
-
-        self.gridLayout_3.addWidget(self.label_19, 1, 0, 1, 1)
-
-        self.label_21 = QLabel(self.tab_2)
-        self.label_21.setObjectName(u"label_21")
-
-        self.gridLayout_3.addWidget(self.label_21, 3, 0, 1, 1)
-
-        self.label_22 = QLabel(self.tab_2)
-        self.label_22.setObjectName(u"label_22")
-
-        self.gridLayout_3.addWidget(self.label_22, 1, 1, 1, 1)
-
-        self.label_23 = QLabel(self.tab_2)
-        self.label_23.setObjectName(u"label_23")
-
-        self.gridLayout_3.addWidget(self.label_23, 2, 1, 1, 1)
-
-        self.label_24 = QLabel(self.tab_2)
-        self.label_24.setObjectName(u"label_24")
-
-        self.gridLayout_3.addWidget(self.label_24, 3, 1, 1, 1)
-
-
-        self.horizontalLayout_4.addLayout(self.gridLayout_3)
-
-
-        self.horizontalLayout_3.addLayout(self.horizontalLayout_4)
-
-        self.tabWidget.addTab(self.tab_2, "")
+        self.tabWidget.addTab(self.tab_hourly, "")
         self.tab_3 = QWidget()
         self.tab_3.setObjectName(u"tab_3")
         self.horizontalLayout_6 = QHBoxLayout(self.tab_3)
@@ -290,15 +254,23 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 725, 41))
+        self.menubar.setGeometry(QRect(0, 0, 868, 31))
+        self.menu = QMenu(self.menubar)
+        self.menu.setObjectName(u"menu")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        self.menubar.addAction(self.menu.menuAction())
+        self.menu.addAction(self.action_temp)
+        self.menu.addAction(self.action_press)
+        self.menu.addAction(self.action_uvi)
+        self.menu.addAction(self.action_wind)
+
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -306,26 +278,14 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0441\u0451 \u043e \u043f\u043e\u0433\u043e\u0434\u0435", None))
+        self.action_temp.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u043f\u0435\u0440\u0430\u0442\u0443\u0440\u0430", None))
+        self.action_press.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
+        self.action_uvi.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0424", None))
+        self.action_wind.setText(QCoreApplication.translate("MainWindow", u"\u0412\u0435\u0442\u0435\u0440", None))
         self.label_title.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_weather.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_now), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0433\u043e\u0434\u0430 \u0441\u0435\u0439\u0447\u0430\u0441", None))
-        self.label_12.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_18.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_20.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_19.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_21.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_22.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_23.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_24.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0434\u0440\u043e\u0431\u043d\u043e \u043d\u0430 \u0434\u0432\u0430 \u0434\u043d\u044f", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_hourly), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0434\u0440\u043e\u0431\u043d\u043e \u043d\u0430 \u0434\u0432\u0430 \u0434\u043d\u044f", None))
         self.label_25.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
@@ -343,5 +303,6 @@ class Ui_MainWindow(object):
         self.label_39.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_40.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0433\u043e\u0434\u0430 \u043d\u0430 \u043d\u0435\u0434\u0435\u043b\u044e", None))
+        self.menu.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0430\u0444\u0438\u043a\u0438", None))
     # retranslateUi
 

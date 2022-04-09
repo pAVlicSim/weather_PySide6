@@ -6,25 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>725</width>
-    <height>508</height>
+    <width>868</width>
+    <height>622</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Всё о погоде</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">font: italic 22pt &quot;Nimbus Roman [urw]&quot;;</string>
+   <string notr="true">font: italic 16pt &quot;Nimbus Roman [urw]&quot;;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="styleSheet">
-       <string notr="true">font: italic 22pt &quot;Nimbus Roman [urw]&quot;;</string>
+       <string notr="true">font: italic 16pt &quot;Nimbus Roman [urw]&quot;;</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_now">
        <attribute name="title">
@@ -35,6 +35,12 @@
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <widget class="QLabel" name="label_title">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="text">
              <string>TextLabel</string>
             </property>
@@ -57,132 +63,135 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="tab_hourly">
        <attribute name="title">
         <string>Подробно на два дня</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_12">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_10">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_11">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="label_13">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="label_15">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="label_16">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="1">
-             <widget class="QLabel" name="label_18">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_17">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_20">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_19">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_21">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="label_22">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="label_23">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="label_24">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <widget class="QScrollArea" name="scrollArea">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>824</width>
+               <height>480</height>
+              </rect>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QTableWidget" name="tableWidget_hourly">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>1</horstretch>
+                  <verstretch>1</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="sizeAdjustPolicy">
+                 <enum>QAbstractScrollArea::AdjustToContents</enum>
+                </property>
+                <property name="textElideMode">
+                 <enum>Qt::ElideNone</enum>
+                </property>
+                <property name="rowCount">
+                 <number>48</number>
+                </property>
+                <property name="columnCount">
+                 <number>10</number>
+                </property>
+                <attribute name="horizontalHeaderCascadingSectionResizes">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="horizontalHeaderHighlightSections">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderCascadingSectionResizes">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="verticalHeaderMinimumSectionSize">
+                 <number>80</number>
+                </attribute>
+                <attribute name="verticalHeaderDefaultSectionSize">
+                 <number>80</number>
+                </attribute>
+                <attribute name="verticalHeaderHighlightSections">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderStretchLastSection">
+                 <bool>false</bool>
+                </attribute>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <row/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
           </item>
          </layout>
         </item>
@@ -346,12 +355,54 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>725</width>
-     <height>41</height>
+     <width>868</width>
+     <height>31</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Графики</string>
+    </property>
+    <addaction name="action_temp"/>
+    <addaction name="action_press"/>
+    <addaction name="action_uvi"/>
+    <addaction name="action_wind"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_temp">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Температура</string>
+   </property>
+  </action>
+  <action name="action_press">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Давление</string>
+   </property>
+  </action>
+  <action name="action_uvi">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>УФ</string>
+   </property>
+  </action>
+  <action name="action_wind">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Ветер</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
