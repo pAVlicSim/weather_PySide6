@@ -36,7 +36,8 @@ class TableHourlyData:
     def __init__(self):
         self.data_table_dict = {}
         self.vertical_headers = []
-        self.horizontal_headers = ('Темп.', 'Давл.', 'Влаж.', 'Ветер.', 'Точ. росы', 'Ультраф.', 'Облач.')
+        self.horizontal_headers = ('Темп.', 'по ощущениям', 'Давл.', 'Влаж.', 'Ветер.', 'Точ. росы', 'Ультраф.',
+                                   'Облач.')
         self.create_headers()
         self.create_items()
 
@@ -46,6 +47,7 @@ class TableHourlyData:
 
     def create_items(self):
         temp_list = []
+        feels_list = []
         pressure_list = []
         humidity_lst = []
         wind_list = []
@@ -54,8 +56,8 @@ class TableHourlyData:
         clouds_list = []
 
         for i in range(len(weather_hourly)):
-            temp_list.append(f"{weather_hourly[i]['temp']: .1f}℃\n"
-                             f"По ощущениям: {weather_hourly[i]['feels_like']: .1f}℃")
+            temp_list.append(f"{weather_hourly[i]['temp']: .1f}℃")
+            feels_list.append(f"{weather_hourly[i]['feels_like']: .1f}℃")
             pressure_list.append(f"{weather_hourly[i]['pressure']}гПа")
             humidity_lst.append(f"{weather_hourly[i]['humidity']}%")
             wind_list.append(f"{weather_hourly[i]['wind_speed']:.1f}м/с - {weather_hourly[i]['wind_gust']:.1f}м/с\n"
@@ -71,31 +73,45 @@ class TableHourlyData:
         self.data_table_dict['dew_point'] = dew_point_list
         self.data_table_dict['uvi'] = uvi_list
         self.data_table_dict['clouds'] = clouds_list
+        self.data_table_dict['feels'] = feels_list
 
 
 class GraphData:
     def __init__(self):
-        self.temp_graph = []
-        self.x_axis_list = []
-        self.y_axis_range = []
         self.x_axis_range = []
+        self.temp_graph = []
+        self.feels_graph = []
+        self.press_graph = []
+        self.x_axis_list = []
+        self.yTemp_min_max = []
+        self.yPress_min_max = []
         self.temp_date()
 
     def temp_date(self):
-        date_ist = []
+        date_list = []
         temp_list = []
+        feels_list = []
+        press_list = []
         qdata_time_list = []
         for i in range(len(weather_hourly)):
             qdata_time_list.append(QDateTime.fromSecsSinceEpoch(weather_hourly[i]['dt']))
-            date_ist.append(weather_hourly[i]['dt'])
-            temp_list.append(round(weather_hourly[i]['temp'], 1))
+            date_list.append(weather_hourly[i]['dt'])
+            temp_list.append(round(weather_hourly[i]['temp']))
+            feels_list.append(weather_hourly[i]['feels_like'])
+            press_list.append(weather_hourly[i]['pressure'])
             self.x_axis_list.append(weather_hourly[i]['dt'])
-        self.y_axis_range.append(min(temp_list))
-        self.y_axis_range.append(max(temp_list))
+
         self.x_axis_range.append(min(qdata_time_list))
         self.x_axis_range.append(max(qdata_time_list))
-        self.temp_graph = list(map(QPointF, date_ist, temp_list))
-        print(self.y_axis_range)
+        self.temp_graph = list(map(QPointF, date_list, temp_list))
+        self.feels_graph = list(map(QPointF, date_list, feels_list))
+        self.press_graph = list(map(QPointF, date_list, press_list))
+        self.yTemp_min_max.append(int(min(feels_list)) - 1)
+        self.yTemp_min_max.append(int(max(temp_list)) + 1)
+        self.yPress_min_max.append(min(press_list) - 2)
+        self.yPress_min_max.append(max(press_list) + 2)
+
+        print(self.yTemp_min_max[1] - self.yTemp_min_max[0])
         # pprint(qdata_time_list)
         # pprint(temp_list)
         # pprint(self.temp_graph)
