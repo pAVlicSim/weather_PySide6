@@ -363,28 +363,26 @@
     <property name="title">
      <string>Графики</string>
     </property>
-    <addaction name="action_temp"/>
-    <addaction name="action_press"/>
-    <addaction name="action_uvi"/>
-    <addaction name="action_wind"/>
+    <addaction name="action_charts48hours"/>
+    <addaction name="action_chartsWeek"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_temp">
+  <action name="action_charts48hours">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Температура</string>
+    <string>На двое суток</string>
    </property>
   </action>
-  <action name="action_press">
+  <action name="action_chartsWeek">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Давление</string>
+    <string>На неделю</string>
    </property>
   </action>
   <action name="action_uvi">

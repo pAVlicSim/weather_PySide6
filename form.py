@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'form.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.2.3
+## Created by: Qt User Interface Compiler version 6.2.4
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -28,12 +28,12 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(868, 622)
         MainWindow.setStyleSheet(u"font: italic 16pt \"Nimbus Roman [urw]\";")
-        self.action_temp = QAction(MainWindow)
-        self.action_temp.setObjectName(u"action_temp")
-        self.action_temp.setCheckable(True)
-        self.action_press = QAction(MainWindow)
-        self.action_press.setObjectName(u"action_press")
-        self.action_press.setCheckable(True)
+        self.action_charts48hours = QAction(MainWindow)
+        self.action_charts48hours.setObjectName(u"action_charts48hours")
+        self.action_charts48hours.setCheckable(True)
+        self.action_chartsWeek = QAction(MainWindow)
+        self.action_chartsWeek.setObjectName(u"action_chartsWeek")
+        self.action_chartsWeek.setCheckable(True)
         self.action_uvi = QAction(MainWindow)
         self.action_uvi.setObjectName(u"action_uvi")
         self.action_uvi.setCheckable(True)
@@ -263,10 +263,8 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.menubar.addAction(self.menu.menuAction())
-        self.menu.addAction(self.action_temp)
-        self.menu.addAction(self.action_press)
-        self.menu.addAction(self.action_uvi)
-        self.menu.addAction(self.action_wind)
+        self.menu.addAction(self.action_charts48hours)
+        self.menu.addAction(self.action_chartsWeek)
 
         self.retranslateUi(MainWindow)
 
@@ -278,8 +276,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0441\u0451 \u043e \u043f\u043e\u0433\u043e\u0434\u0435", None))
-        self.action_temp.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u043f\u0435\u0440\u0430\u0442\u0443\u0440\u0430", None))
-        self.action_press.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
+        self.action_charts48hours.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430 \u0434\u0432\u043e\u0435 \u0441\u0443\u0442\u043e\u043a", None))
+        self.action_chartsWeek.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430 \u043d\u0435\u0434\u0435\u043b\u044e", None))
         self.action_uvi.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0424", None))
         self.action_wind.setText(QCoreApplication.translate("MainWindow", u"\u0412\u0435\u0442\u0435\u0440", None))
         self.label_title.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))

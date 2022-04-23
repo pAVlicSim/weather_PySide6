@@ -2,13 +2,13 @@ import sys
 from pprint import pprint
 
 from PySide6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
-from PySide6.QtCore import Qt
-import create_weather_data
-import create_weather_dict
+
+import dev_weather_dict
+import dev_weather_data
 from form import Ui_MainWindow
 from dialog_charts_ import DialogCarts
 
-weather_dict = create_weather_dict.load_weather(create_weather_dict.load_geolocation('Москва'))
+weather_dict = dev_weather_dict.load_weather(dev_weather_dict.load_geolocation('Москва'))
 
 
 class MainWindow(QMainWindow):
@@ -16,13 +16,12 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        label_now_text = create_weather_data.LabelNowText()
-        table_hourly_data = create_weather_data.TableHourlyData()
-        self.ui.label_title.setText(label_now_text.label_now_text['title'])
-        self.ui.label_weather.setText(label_now_text.label_now_text['weather'])
+        table_hourly_data = dev_weather_data.TableHourlyData()
+        self.ui.label_title.setText(dev_weather_data.create_label_now_text()['title'])
+        self.ui.label_weather.setText(dev_weather_data.create_label_now_text()['weather'])
         self.ui.tableWidget_hourly.setHorizontalHeaderLabels(table_hourly_data.horizontal_headers)
         self.ui.tableWidget_hourly.setVerticalHeaderLabels(table_hourly_data.vertical_headers)
-        self.my_delegate = create_weather_data.AlignDelegate(self.ui.tableWidget_hourly)
+        self.my_delegate = dev_weather_data.AlignDelegate(self.ui.tableWidget_hourly)
         # pprint(weather_dict['hourly'][0])
         for i in range(self.ui.tableWidget_hourly.rowCount()):
             self.ui.tableWidget_hourly.setItem(i, 0, QTableWidgetItem(table_hourly_data.data_table_dict['temp'][i]))
@@ -38,7 +37,7 @@ class MainWindow(QMainWindow):
         self.ui.tableWidget_hourly.resizeColumnsToContents()
 
         self.dialog_charts = DialogCarts()
-        self.ui.action_temp.triggered.connect(self.dialog_show)
+        self.ui.action_charts48hours.triggered.connect(self.dialog_show)
 
     def dialog_show(self):
         self.dialog_charts.show()
