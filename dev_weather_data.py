@@ -167,3 +167,15 @@ def wind_deg_tosStr(deg: int):
     else:
         degStr = 'северный'
     return degStr
+
+
+def create_week_data():
+    weather_data = []
+    weather_icon = []
+    for i in range(len(weather_week)):
+        weather_data.append(f"")
+
+
+class WeekData:
+    def __init__(self):
+        self.week_data = {}
