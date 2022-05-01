@@ -12,21 +12,21 @@ from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
-    QCursor, QFont, QFontDatabase, QGradient,
-    QIcon, QImage, QKeySequence, QLinearGradient,
-    QPainter, QPalette, QPixmap, QRadialGradient,
-    QTransform)
-from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QGridLayout, QHBoxLayout,
-    QHeaderView, QLabel, QMainWindow, QMenu,
-    QMenuBar, QScrollArea, QSizePolicy, QStatusBar,
-    QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+                           QCursor, QFont, QFontDatabase, QGradient,
+                           QIcon, QImage, QKeySequence, QLinearGradient,
+                           QPainter, QPalette, QPixmap, QRadialGradient,
+                           QTransform)
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QFrame, QGridLayout,
+                               QHBoxLayout, QHeaderView, QLabel, QMainWindow,
+                               QMenu, QMenuBar, QScrollArea, QSizePolicy,
+                               QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
+                               QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(868, 622)
+        MainWindow.resize(1031, 622)
         MainWindow.setStyleSheet(u"font: italic 16pt \"Nimbus Roman [urw]\";")
         self.action_charts48hours = QAction(MainWindow)
         self.action_charts48hours.setObjectName(u"action_charts48hours")
@@ -123,97 +123,134 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+
+        self.horizontalLayout_6.addLayout(self.verticalLayout_3)
+
         self.scrollArea_2 = QScrollArea(self.tab_week)
         self.scrollArea_2.setObjectName(u"scrollArea_2")
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 810, 1662))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, -1180, 967, 1662))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
-        self.label_8 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_8.setObjectName(u"label_8")
+        self.label_3 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setFrameShape(QFrame.Box)
+        self.label_3.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_8, 3, 1, 1, 1)
+        self.gridLayout.addWidget(self.label_3, 3, 1, 1, 1)
 
-        self.label_13 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_13.setObjectName(u"label_13")
+        self.icon_6 = QLabel(self.scrollAreaWidgetContents_2)
+        self.icon_6.setObjectName(u"icon_6")
+        self.icon_6.setFrameShape(QFrame.Box)
+        self.icon_6.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_13, 6, 0, 1, 1)
-
-        self.label_10 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_10.setObjectName(u"label_10")
-
-        self.gridLayout.addWidget(self.label_10, 4, 1, 1, 1)
-
-        self.label_6 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_6.setObjectName(u"label_6")
-
-        self.gridLayout.addWidget(self.label_6, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.icon_6, 6, 0, 1, 1)
 
         self.label_4 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_4.setObjectName(u"label_4")
+        self.label_4.setFrameShape(QFrame.Box)
+        self.label_4.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_4, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.label_4, 4, 1, 1, 1)
 
         self.label_2 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_2.setObjectName(u"label_2")
+        self.label_2.setFrameShape(QFrame.Box)
+        self.label_2.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_2, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.label_2, 2, 1, 1, 1)
 
-        self.label_3 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_3.setObjectName(u"label_3")
+        self.label_1 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_1.setObjectName(u"label_1")
+        self.label_1.setFrameShape(QFrame.Box)
+        self.label_1.setFrameShadow(QFrame.Plain)
+        self.label_1.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_1, 1, 1, 1, 1)
 
-        self.label_12 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_12.setObjectName(u"label_12")
+        self.label_0 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_0.setObjectName(u"label_0")
+        self.label_0.setFrameShape(QFrame.Box)
+        self.label_0.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_12, 5, 1, 1, 1)
+        self.gridLayout.addWidget(self.label_0, 0, 1, 1, 1)
 
-        self.label_7 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_7.setObjectName(u"label_7")
+        self.icon_1 = QLabel(self.scrollAreaWidgetContents_2)
+        self.icon_1.setObjectName(u"icon_1")
+        self.icon_1.setFrameShape(QFrame.Box)
+        self.icon_1.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_7, 3, 0, 1, 1)
-
-        self.label_11 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_11.setObjectName(u"label_11")
-
-        self.gridLayout.addWidget(self.label_11, 5, 0, 1, 1)
-
-        self.label_14 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_14.setObjectName(u"label_14")
-
-        self.gridLayout.addWidget(self.label_14, 6, 1, 1, 1)
+        self.gridLayout.addWidget(self.icon_1, 1, 0, 1, 1)
 
         self.label_5 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_5.setObjectName(u"label_5")
+        self.label_5.setFrameShape(QFrame.Box)
+        self.label_5.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_5, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_5, 5, 1, 1, 1)
 
-        self.label = QLabel(self.scrollAreaWidgetContents_2)
-        self.label.setObjectName(u"label")
+        self.icon_3 = QLabel(self.scrollAreaWidgetContents_2)
+        self.icon_3.setObjectName(u"icon_3")
+        self.icon_3.setFrameShape(QFrame.Box)
+        self.icon_3.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.icon_3, 3, 0, 1, 1)
 
-        self.label_9 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_9.setObjectName(u"label_9")
+        self.icon_5 = QLabel(self.scrollAreaWidgetContents_2)
+        self.icon_5.setObjectName(u"icon_5")
+        self.icon_5.setFrameShape(QFrame.Box)
+        self.icon_5.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_9, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.icon_5, 5, 0, 1, 1)
 
-        self.label_15 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_15.setObjectName(u"label_15")
+        self.label_6 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setFrameShape(QFrame.Box)
+        self.label_6.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_15, 7, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_6, 6, 1, 1, 1)
 
-        self.label_16 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_16.setObjectName(u"label_16")
+        self.icon_2 = QLabel(self.scrollAreaWidgetContents_2)
+        self.icon_2.setObjectName(u"icon_2")
+        self.icon_2.setFrameShape(QFrame.Box)
+        self.icon_2.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_16, 7, 1, 1, 1)
+        self.gridLayout.addWidget(self.icon_2, 2, 0, 1, 1)
+
+        self.icon_0 = QLabel(self.scrollAreaWidgetContents_2)
+        self.icon_0.setObjectName(u"icon_0")
+        self.icon_0.setFrameShape(QFrame.Box)
+        self.icon_0.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.icon_0, 0, 0, 1, 1)
+
+        self.icon_4 = QLabel(self.scrollAreaWidgetContents_2)
+        self.icon_4.setObjectName(u"icon_4")
+        self.icon_4.setFrameShape(QFrame.Box)
+        self.icon_4.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.icon_4, 4, 0, 1, 1)
+
+        self.icon_7 = QLabel(self.scrollAreaWidgetContents_2)
+        self.icon_7.setObjectName(u"icon_7")
+        self.icon_7.setFrameShape(QFrame.Box)
+        self.icon_7.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.icon_7, 7, 0, 1, 1)
+
+        self.label_7 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setFrameShape(QFrame.Box)
+        self.label_7.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_7, 7, 1, 1, 1)
 
         self.gridLayout.setColumnStretch(1, 1)
+        self.gridLayout.setColumnMinimumWidth(0, 200)
         self.gridLayout.setRowMinimumHeight(0, 200)
         self.gridLayout.setRowMinimumHeight(1, 200)
         self.gridLayout.setRowMinimumHeight(2, 200)
@@ -227,9 +264,7 @@ class Ui_MainWindow(object):
 
         self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
 
-        self.verticalLayout_3.addWidget(self.scrollArea_2)
-
-        self.horizontalLayout_6.addLayout(self.verticalLayout_3)
+        self.horizontalLayout_6.addWidget(self.scrollArea_2)
 
         self.tabWidget.addTab(self.tab_week, "")
 
@@ -238,7 +273,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 868, 31))
+        self.menubar.setGeometry(QRect(0, 0, 1031, 31))
         self.menu = QMenu(self.menubar)
         self.menu.setObjectName(u"menu")
         MainWindow.setMenuBar(self.menubar)
@@ -277,22 +312,22 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_hourly), QCoreApplication.translate("MainWindow",
                                                                                                       u"\u041f\u043e\u0434\u0440\u043e\u0431\u043d\u043e \u043d\u0430 \u0434\u0432\u0430 \u0434\u043d\u044f",
                                                                                                       None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.icon_6.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_12.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_1.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_0.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.icon_1.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.icon_3.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.icon_5.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.icon_2.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.icon_0.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.icon_4.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.icon_7.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_week), QCoreApplication.translate("MainWindow",
                                                                                                     u"\u041f\u043e\u0433\u043e\u0434\u0430 \u043d\u0430 \u043d\u0435\u0434\u0435\u043b\u044e",
                                                                                                     None))

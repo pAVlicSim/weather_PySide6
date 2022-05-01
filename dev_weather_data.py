@@ -1,14 +1,16 @@
 from pprint import pprint
 
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import Qt, QPointF, QDateTime
+from PySide6.QtWidgets import QStyledItemDelegate
+
 from weather_main import weather_dict
 from datetime import datetime as dt
 
 weather_now = weather_dict['current']
 weather_hourly = weather_dict['hourly']
 weather_week = weather_dict['daily']
-pprint(weather_now)
+pprint(weather_hourly[0])
 
 
 def create_label_now_text() -> dict:
@@ -35,8 +37,8 @@ class TableHourlyData:
     def __init__(self):
         self.data_table_dict = {}
         self.vertical_headers = []
-        self.horizontal_headers = ('Темп.', 'по ощущениям', 'Давл.', 'Влаж.', 'Ветер.', 'Точ. росы', 'Ультраф.',
-                                   'Облач.')
+        self.horizontal_headers = ('Погода', 'Темп.', 'по ощущениям', 'Давл.', 'Влаж.', 'Ветер.', 'Точ. росы',
+                                   'Ультраф.', 'Облач.', 'Осадки')
         self.create_headers()
         self.create_items()
 
@@ -53,8 +55,11 @@ class TableHourlyData:
         dew_point_list = []
         uvi_list = []
         clouds_list = []
+        icon_lst = []
+        precipitation_lst = []
 
         for i in range(len(weather_hourly)):
+            icon_lst.append(f"{weather_hourly[i]['weather'][0]['icon']}")
             temp_list.append(f"{weather_hourly[i]['temp']: .1f}℃")
             feels_list.append(f"{weather_hourly[i]['feels_like']: .1f}℃")
             pressure_list.append(f"{weather_hourly[i]['pressure']}гПа")
@@ -64,6 +69,12 @@ class TableHourlyData:
             dew_point_list.append(f"{weather_hourly[i]['dew_point']}℃")
             uvi_list.append(f"{weather_hourly[i]['uvi']}")
             clouds_list.append(f"{weather_hourly[i]['clouds']}%")
+            if 'rain' in weather_hourly[i]:
+                precipitation_lst.append(f"дождь: \n{weather_hourly[i]['rain']['1h']}мм/час")
+            elif 'snow' in weather_hourly[i]:
+                precipitation_lst.append(f"снег: {weather_hourly[i]['snow']['1h']}мм/час")
+            else:
+                precipitation_lst.append('Без\nосадков')
 
         self.data_table_dict['temp'] = temp_list
         self.data_table_dict['pressure'] = pressure_list
@@ -73,6 +84,9 @@ class TableHourlyData:
         self.data_table_dict['uvi'] = uvi_list
         self.data_table_dict['clouds'] = clouds_list
         self.data_table_dict['feels'] = feels_list
+        self.data_table_dict['icon'] = icon_lst
+        self.data_table_dict['precipitation'] = precipitation_lst
+        print(precipitation_lst)
 
 
 def create_data() -> dict:
@@ -131,7 +145,6 @@ def y_axis_range(y_axes: list):
     full_axes = sum(y_axes, [])
     for n in range(1, 5):
         if ((int(max(set(full_axes))) + 2) - (int(min(set(full_axes))) - n)) % 2 == 0:
-            print((int(max(set(full_axes))) + 2) - (int(min(set(full_axes))) - n) % 2)
             break
         else:
             n += 1
@@ -146,6 +159,12 @@ class AlignDelegate(QtWidgets.QStyledItemDelegate):
     def initStyleOption(self, option, index):
         super(AlignDelegate, self).initStyleOption(option, index)
         option.displayAlignment = Qt.AlignCenter
+
+
+class IconDelegate(QStyledItemDelegate):
+    def initStyleOption(self, option, index):
+        super(IconDelegate, self).initStyleOption(option, index)
+        option.decorationSize = option.rect.size()
 
 
 def wind_deg_tosStr(deg: int):

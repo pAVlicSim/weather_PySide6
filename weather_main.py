@@ -1,6 +1,7 @@
 import sys
 from pprint import pprint
 
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 
 import dev_weather_dict
@@ -16,24 +17,29 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        table_hourly_data = dev_weather_data.TableHourlyData()
+        thd = dev_weather_data.TableHourlyData()
         self.ui.label_title.setText(dev_weather_data.create_label_now_text()['title'])
         self.ui.label_weather.setText(dev_weather_data.create_label_now_text()['weather'])
-        self.ui.tableWidget_hourly.setHorizontalHeaderLabels(table_hourly_data.horizontal_headers)
-        self.ui.tableWidget_hourly.setVerticalHeaderLabels(table_hourly_data.vertical_headers)
-        self.my_delegate = dev_weather_data.AlignDelegate(self.ui.tableWidget_hourly)
-        # pprint(weather_dict['hourly'][0])
+        self.ui.tableWidget_hourly.setHorizontalHeaderLabels(thd.horizontal_headers)
+        self.ui.tableWidget_hourly.setVerticalHeaderLabels(thd.vertical_headers)
+        self.my_alignDelegate = dev_weather_data.AlignDelegate()
+        self.my_iconDelegate = dev_weather_data.IconDelegate()
+
         for i in range(self.ui.tableWidget_hourly.rowCount()):
-            self.ui.tableWidget_hourly.setItem(i, 0, QTableWidgetItem(table_hourly_data.data_table_dict['temp'][i]))
-            self.ui.tableWidget_hourly.setItem(i, 1, QTableWidgetItem(table_hourly_data.data_table_dict['feels'][i]))
-            self.ui.tableWidget_hourly.setItem(i, 2, QTableWidgetItem(table_hourly_data.data_table_dict['pressure'][i]))
-            self.ui.tableWidget_hourly.setItem(i, 3, QTableWidgetItem(table_hourly_data.data_table_dict['humidity'][i]))
-            self.ui.tableWidget_hourly.setItem(i, 4, QTableWidgetItem(table_hourly_data.data_table_dict['wind'][i]))
-            self.ui.tableWidget_hourly.setItem(i, 5,
-                                               QTableWidgetItem(table_hourly_data.data_table_dict['dew_point'][i]))
-            self.ui.tableWidget_hourly.setItem(i, 6, QTableWidgetItem(table_hourly_data.data_table_dict['uvi'][i]))
-            self.ui.tableWidget_hourly.setItem(i, 7, QTableWidgetItem(table_hourly_data.data_table_dict['clouds'][i]))
-        self.ui.tableWidget_hourly.setItemDelegate(self.my_delegate)
+            self.ui.tableWidget_hourly.setItem(i, 0, QTableWidgetItem(
+                QIcon(f"weather_icons/{thd.data_table_dict['icon'][i]}.png"), ''))
+            self.ui.tableWidget_hourly.setItem(i, 1, QTableWidgetItem(thd.data_table_dict['temp'][i]))
+            self.ui.tableWidget_hourly.setItem(i, 2, QTableWidgetItem(thd.data_table_dict['feels'][i]))
+            self.ui.tableWidget_hourly.setItem(i, 3, QTableWidgetItem(thd.data_table_dict['pressure'][i]))
+            self.ui.tableWidget_hourly.setItem(i, 4, QTableWidgetItem(thd.data_table_dict['humidity'][i]))
+            self.ui.tableWidget_hourly.setItem(i, 5, QTableWidgetItem(thd.data_table_dict['wind'][i]))
+            self.ui.tableWidget_hourly.setItem(i, 6,
+                                               QTableWidgetItem(thd.data_table_dict['dew_point'][i]))
+            self.ui.tableWidget_hourly.setItem(i, 7, QTableWidgetItem(thd.data_table_dict['uvi'][i]))
+            self.ui.tableWidget_hourly.setItem(i, 8, QTableWidgetItem(thd.data_table_dict['clouds'][i]))
+            self.ui.tableWidget_hourly.setItem(i, 9, QTableWidgetItem(thd.data_table_dict['precipitation'][i]))
+        self.ui.tableWidget_hourly.setItemDelegate(self.my_alignDelegate)
+        self.ui.tableWidget_hourly.setItemDelegateForColumn(0, self.my_iconDelegate)
         self.ui.tableWidget_hourly.resizeColumnsToContents()
 
         self.dialog_charts = DialogCarts()
