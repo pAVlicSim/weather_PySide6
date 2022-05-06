@@ -1,6 +1,6 @@
 from pprint import pprint
 
-from PySide6 import QtWidgets, QtGui
+from PySide6 import QtWidgets
 from PySide6.QtCore import Qt, QPointF, QDateTime
 from PySide6.QtWidgets import QStyledItemDelegate
 
@@ -10,7 +10,7 @@ from datetime import datetime as dt
 weather_now = weather_dict['current']
 weather_hourly = weather_dict['hourly']
 weather_week = weather_dict['daily']
-pprint(weather_hourly[0])
+pprint(weather_week[0])
 
 
 def create_label_now_text() -> dict:
@@ -86,7 +86,6 @@ class TableHourlyData:
         self.data_table_dict['feels'] = feels_list
         self.data_table_dict['icon'] = icon_lst
         self.data_table_dict['precipitation'] = precipitation_lst
-        print(precipitation_lst)
 
 
 def create_data() -> dict:
@@ -188,13 +187,37 @@ def wind_deg_tosStr(deg: int):
     return degStr
 
 
-def create_week_data():
-    weather_data = []
-    weather_icon = []
-    for i in range(len(weather_week)):
-        weather_data.append(f"")
-
-
 class WeekData:
     def __init__(self):
         self.week_data = {}
+        self.create_week_data()
+
+    def create_week_data(self):
+        icon_lst = []
+        weather_lst = []
+        for i in range(len(weather_week)):
+            icon_lst.append(weather_week[i]['weather'][0]['icon'])
+            weather_lst.append(f"{weather_dict['name_city']}   "
+                               f"{dt.fromtimestamp(weather_week[i]['dt']): %A  %d.%m.%y}   "
+                               f"{weather_week[i]['weather'][0]['description']}\n"
+                               f"Температура утром: {weather_week[i]['temp']['morn']: .1f}℃  "
+                               f"По ощущениям: {weather_week[i]['feels_like']['morn']: .1f}℃   "
+                               f"Температура днём: {weather_week[i]['temp']['day']: .1f}℃  "
+                               f"По ощущениям: {weather_week[i]['feels_like']['day']: .1f}℃\n"
+                               f"Температура вечером: {weather_week[i]['temp']['eve']: .1f}℃  "
+                               f"ощущения как: {weather_week[i]['feels_like']['eve']: .1f}℃   "
+                               f"Температура ночью: {weather_week[i]['temp']['night']: .1f}℃  "
+                               f"ощущения: {weather_week[i]['feels_like']['night']: .1f}℃\n"
+                               f"Атм. давление: {weather_week[i]['pressure']}гПа  "
+                               f"Влажность: {weather_week[i]['humidity']}%  "
+                               f"Ультрафиолет: {weather_week[i]['uvi']: .1f}  "
+                               f"Точка росы: {weather_week[i]['dew_point']: .1f}℃\n"
+                               f"Скорость ветра: {weather_week[i]['wind_speed']}м/с  "
+                               f"Порывы до: {weather_week[i]['wind_gust']}м/с  "
+                               f"Направление: {wind_deg_tosStr(weather_week[i]['wind_deg'])}\n"
+                               f"Восход солнца: {dt.fromtimestamp(weather_week[i]['sunrise']): %H:%M}  "
+                               f"Закат: {dt.fromtimestamp(weather_week[i]['sunset']): %H:%M}   "
+                               f"Восход луны: {dt.fromtimestamp(weather_week[i]['moonrise']): %H:%M}  "
+                               f"Закат: {dt.fromtimestamp(weather_week[i]['moonset']): %H:%M}")
+        self.week_data['icon'] = icon_lst
+        self.week_data['weather'] = weather_lst

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>707</width>
     <height>400</height>
    </rect>
   </property>
@@ -20,17 +20,27 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QRadioButton" name="radioButton_temp">
-         <property name="text">
-          <string>Температура</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButton_press">
-         <property name="text">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+                 <widget class="QLabel" name="label">
+                     <property name="text">
+                         <string>На два дня:</string>
+                     </property>
+                     <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                     </property>
+                 </widget>
+             </item>
+             <item>
+                 <widget class="QRadioButton" name="radioButton_temp">
+                     <property name="text">
+                         <string>Температура</string>
+                     </property>
+                 </widget>
+             </item>
+             <item>
+                 <widget class="QRadioButton" name="radioButton_press">
+                     <property name="text">
           <string>Давление</string>
          </property>
         </widget>
@@ -42,15 +52,64 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QRadioButton" name="radioButton_uvi">
-         <property name="text">
-          <string>У/Ф</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+             <item>
+                 <widget class="QRadioButton" name="radioButton_uvi">
+                     <property name="text">
+                         <string>У/Ф</string>
+                     </property>
+                 </widget>
+             </item>
+         </layout>
      </item>
+        <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                    <widget class="QLabel" name="label_2">
+                        <property name="text">
+                            <string>На неделю:</string>
+                        </property>
+                        <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                        </property>
+                    </widget>
+                </item>
+                <item>
+                    <widget class="QRadioButton" name="radio_temp_day">
+                        <property name="text">
+                            <string>Темп. днём</string>
+                        </property>
+                    </widget>
+                </item>
+                <item>
+                    <widget class="QRadioButton" name="radio_temp_night">
+                        <property name="text">
+                            <string>Темп. ночью</string>
+                        </property>
+                    </widget>
+                </item>
+                <item>
+                    <widget class="QRadioButton" name="radio_week_press">
+                        <property name="text">
+                            <string>Атм. давление</string>
+                        </property>
+                    </widget>
+                </item>
+                <item>
+                    <widget class="QRadioButton" name="radio_week_humidity">
+                        <property name="text">
+                            <string>Влажность</string>
+                        </property>
+                    </widget>
+                </item>
+                <item>
+                    <widget class="QRadioButton" name="radio_week_uvi">
+                        <property name="text">
+                            <string>Ультрафиолет</string>
+                        </property>
+                    </widget>
+                </item>
+            </layout>
+        </item>
     </layout>
    </item>
   </layout>

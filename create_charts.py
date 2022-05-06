@@ -3,7 +3,7 @@ from pprint import pprint
 from PySide6.QtCharts import QChart, QSplineSeries, QValueAxis, QDateTimeAxis
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPen, QColor, QFont
-import dev_weather_data
+import dw_data
 
 chart_font = QFont("Sans Serif", 12, QFont.StyleItalic)
 
@@ -11,7 +11,7 @@ chart_font = QFont("Sans Serif", 12, QFont.StyleItalic)
 class MyXAxis(QDateTimeAxis):
     def __init__(self):
         super().__init__()
-        hd = dev_weather_data.HourlyChartsData()
+        hd = dw_data.HourlyChartsData()
         self.setFormat('ddd HH:MM')
         self.setLabelsColor('orange')
         self.setTickCount(25)
@@ -32,7 +32,7 @@ class MyYAxis(QValueAxis):
 
 
 class MySplineSeries(QSplineSeries):
-    def __init__(self, name: str,list_series: list, color):
+    def __init__(self, name: str, list_series: list, color):
         super().__init__()
         self.setName(name)
         self.append(list_series)
@@ -43,7 +43,7 @@ class TempChart(QChart):
     def __init__(self):
         super().__init__()
         self.setTheme(QChart.ChartThemeBlueCerulean)
-        hd = dev_weather_data.HourlyChartsData()
+        hd = dw_data.HourlyChartsData()
         #
         self._y_axis = MyYAxis(hd.y_tempAxisMin, hd.y_tempAxisMax, 2, 'Градусы')
         self._x_axis = MyXAxis()
@@ -64,7 +64,7 @@ class PressChart(QChart):
         super().__init__()
 
         self.setTheme(QChart.ChartThemeBlueCerulean)
-        hd = dev_weather_data.HourlyChartsData()
+        hd = dw_data.HourlyChartsData()
         #
         self._x_axis = MyXAxis()
         #
@@ -82,7 +82,7 @@ class HumidityChart(QChart):
     def __init__(self):
         super().__init__()
         self.setTheme(QChart.ChartThemeBlueCerulean)
-        hd = dev_weather_data.HourlyChartsData()
+        hd = dw_data.HourlyChartsData()
         #
         self._x_axis = MyXAxis()
         #
@@ -100,7 +100,7 @@ class UviChart(QChart):
     def __init__(self):
         super().__init__()
         self.setTheme(QChart.ChartThemeBlueCerulean)
-        hd = dev_weather_data.HourlyChartsData()
+        hd = dw_data.HourlyChartsData()
         self._x_axis = MyXAxis()
         self._y_axis = MyYAxis(hd.y_uviAxisMin, hd.y_uviAxisMax, 2, 'Коэфф.')
         self.uvi_series = MySplineSeries('Ультрафиолет', hd.uviSeries, QColor('#FF6E1A'))

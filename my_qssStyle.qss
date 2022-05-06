@@ -1,0 +1,6 @@
+QWidget, QLabel{ background-color: #CBFF8F;}
+QTableWidget{background: #CBFF8F;}
+QScrollArea{background: #CBFF8F;}
+
+
+
